@@ -36,11 +36,10 @@ function Doctor() {
           <div className="container doctor-profile-grid">
             <div className="doctor-profile-photo">
               <div className="image-placeholder">
-                <span>Doctor Photo</span>
-                <small>
-                  The clinic's approved doctor photograph
-                  can be added here.
-                </small>
+                <img
+                  src="/images/doctor.jpg"                  
+                  alt="Dr. Jyoti Raheja"
+                />
               </div>
             </div>
 

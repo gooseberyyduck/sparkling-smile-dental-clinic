@@ -450,7 +450,10 @@ function Home() {
                 aria-label="View Dr. Jyoti Raheja's profile"
               >
                 <div className="doctor-photo">
-                  <span>Doctor Photo</span>
+                  <img
+                    src="/images/doctor.jpg"
+                    alt="Dr. Jyoti Raheja"
+                  />
                 </div>
 
                 <div className="doctor-info">
@@ -513,6 +516,29 @@ function Home() {
 
               <div className="gallery-item">
                  <img src="/images/clinic-gallery-5.jpg"alt="Sparkling Smile Dental Clinic gallery photo 5"className="gallery-image"/>
+              </div>
+              <div className="gallery-item">
+                <img
+                  src="/images/gallery-treatment-1.jpeg"
+                  alt="Dr. Jyoti Raheja providing dental treatment"
+                  className="gallery-image"
+                />
+              </div>
+
+              <div className="gallery-item">
+                <img
+                  src="/images/gallery-treatment-2.jpeg"
+                  alt="Dental treatment at Sparkling Smile Dental Clinic"
+                  className="gallery-image"
+                />
+              </div>
+
+              <div className="gallery-item">
+                <img
+                  src="/images/gallery-treatment-3.jpeg"
+                  alt="Dentist performing a dental procedure"
+                  className="gallery-image"
+                />
               </div>
             </div>
           </div>

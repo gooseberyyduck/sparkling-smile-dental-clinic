@@ -986,15 +986,47 @@ function Services() {
 
                    */
 
+                  const hiddenServices = [
+
+                    "pediatric dentistry",
+
+                    "crowns and bridges",
+
+                    "crowns bridges",
+
+                    "crown and bridge",
+
+                    "prosthodontics",
+
+                    "hollywood smile",
+
+                  ];
+
                   const visibleServices = categoryServices
 
-                    .filter(
+                    .filter((service) => {
 
-                      (service) =>
+                      const searchableService = `${service.name} ${service.slug} ${service.category}`
 
-                        service.slug !== featuredSlug
+                        .toLowerCase()
 
-                    )
+                        .replace(/&/g, "and")
+
+                        .replace(/-/g, " ");
+
+                      return (
+
+                        service.slug !== featuredSlug &&
+
+                        !hiddenServices.some((name) =>
+
+                          searchableService.includes(name)
+
+                        )
+
+                      );
+
+                    })
 
                     .sort((a, b) => {
 

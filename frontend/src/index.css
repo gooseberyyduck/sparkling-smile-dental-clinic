@@ -4070,3 +4070,64 @@ body,
     ),
     linear-gradient(135deg, #d5e9f5, #a6c7dc);
 }
+/* Doctor profile photograph */
+.image-placeholder {
+  padding: 0 !important;
+  overflow: hidden;
+  position: relative;
+}
+
+.image-placeholder img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  border-radius: inherit;
+}
+/* Fix doctor card image and text layout */
+.doctor-card .doctor-photo {
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  position: relative;
+  padding: 0;
+}
+
+.doctor-card .doctor-photo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 25%;
+}
+
+.doctor-card .doctor-info {
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  padding: 20px 24px;
+}
+/* Fix doctor card image and text layout */
+.doctor-card .doctor-photo {
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  position: relative;
+  padding: 0;
+}
+
+.doctor-card .doctor-photo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 25%;
+}
+
+.doctor-card .doctor-info {
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  padding: 20px 24px;
+}
