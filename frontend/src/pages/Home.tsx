@@ -409,11 +409,11 @@ function Home() {
                   <h3>Dr. Jyoti Raheja</h3>
 
                   <p className="doctor-qualification">
-                    Endodontist · DoH-Licensed General Dentist
+                    Dentist
                   </p>
 
-                  <p>MDS – Conservative Dentistry &amp; Endodontics</p>
-                  <p><strong>18+ years of experience</strong> · All India Rank 1, MDS Entrance Exam (2010)</p>
+                  <p>MDS – Conservative Dentistry &amp; Endodontics (2010–2013)</p>
+                  <p><strong>18+ years of experience</strong></p>
 
                   <span className="doctor-profile-link">
                     View Doctor Profile →

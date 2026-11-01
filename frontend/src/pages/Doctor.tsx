@@ -22,12 +22,12 @@ function Doctor() {
           <nav className="nav-links">
             <Link to="/">Home</Link>
             <Link to="/services">Services</Link>
-            <Link to="/appointment">Appointments</Link>
+            <a href="https://wa.me/971503002504" target="_blank" rel="noopener noreferrer">WhatsApp</a>
           </nav>
 
-          <Link to="/appointment" className="nav-button">
+          <a href="https://wa.me/971503002504" target="_blank" rel="noopener noreferrer" className="nav-button">
             Book Consultation
-          </Link>
+          </a>
         </div>
       </header>
 
@@ -51,32 +51,32 @@ function Doctor() {
               <h1>Dr. Jyoti Raheja</h1>
 
               <p className="doctor-profile-role">
-                Endodontist · DoH-Licensed General Dentist
+                Dentist
               </p>
 
               <div className="doctor-qualification-badge">
-                MDS – Conservative Dentistry &amp; Endodontics
+                MDS – Conservative Dentistry &amp; Endodontics (2010–2013)
               </div>
 
               <p className="doctor-profile-description">
-                Dr. Jyoti Raheja is an Endodontist and DoH-licensed
-                General Dentist based in Abu Dhabi, with over 18 years
+                Dr. Jyoti Raheja is a dentist based in Abu Dhabi, with over 18 years
                 of experience in India and the UAE, including practice
                 in Abu Dhabi since 2019. She holds an MDS in Conservative
-                Dentistry &amp; Endodontics from PGIDS Rohtak, where she
-                earned All India Rank 1 in the 2010 MDS entrance exam.
+                Dentistry &amp; Endodontics from PGIDS Rohtak (2010–2013).
                 Her approach combines clinical experience with a
                 patient-focused commitment to explaining treatment
                 options and helping patients make informed decisions.
               </p>
 
               <div className="doctor-profile-actions">
-                <Link
-                  to="/appointment"
+                <a
+                  href="https://wa.me/971503002504"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="primary-button"
                 >
                   Book a Consultation
-                </Link>
+                </a>
 
                 <Link
                   to="/services"
@@ -116,16 +116,7 @@ function Doctor() {
                   and the UAE, including practice in Abu Dhabi since 2019.
                 </p>
               </article>
-
-              <article className="doctor-detail-card">
-                <div className="service-icon" aria-hidden="true">#1</div>
-                <h3>Academic Achievement</h3>
-                <p>
-                  All India Rank 1 in the 2010 MDS entrance examination.
-                </p>
-              </article>
-
-              <article className="doctor-detail-card">
+<article className="doctor-detail-card">
                 <div className="service-icon" aria-hidden="true">MDS</div>
                 <h3>Specialist Qualification</h3>
                 <p>
@@ -137,13 +128,12 @@ function Doctor() {
 
             <div className="doctor-biography-sections">
               <article className="doctor-biography-block">
-                <h2>Education and Academic Excellence</h2>
+                <h2>Education</h2>
                 <p>
                   Dr. Raheja earned her <strong>MDS in Conservative Dentistry
                   &amp; Endodontics</strong> from the <strong>Postgraduate
                   Institute of Dental Sciences (PGIDS), Rohtak</strong>.
-                  She achieved <strong>All India Rank 1</strong> in the
-                  2010 MDS entrance examination.
+
                 </p>
               </article>
 
@@ -213,9 +203,9 @@ function Doctor() {
                 dental concerns with Dr. Jyoti Raheja and learn about
                 suitable care options following an assessment.
               </p>
-              <Link to="/appointment" className="primary-button">
+              <a href="https://wa.me/971503002504" target="_blank" rel="noopener noreferrer" className="primary-button">
                 Book a Consultation
-              </Link>
+              </a>
             </div>
           </div>
         </section>
@@ -231,7 +221,7 @@ function Doctor() {
           <div className="footer-links">
             <Link to="/">Home</Link>
             <Link to="/services">Services</Link>
-            <Link to="/appointment">Appointments</Link>
+            <a href="https://wa.me/971503002504" target="_blank" rel="noopener noreferrer">WhatsApp</a>
           </div>
         </div>
 
