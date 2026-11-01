@@ -1,18 +1,7 @@
 
-import { useEffect, useState } from "react";
+
 import { Link } from "react-router-dom";
 import "../index.css";
-
-type ClinicInfo = {
-  clinic_name: string;
-  phone: string | null;
-  email: string | null;
-  whatsapp_number: string | null;
-  address: string | null;
-  slot_interval_minutes: number;
-};
-
-const API_URL = "http://localhost:5000/api";
 
 function getWhatsAppLink(number: string): string {
   let digits = number.replace(/\D/g, "");
@@ -114,53 +103,13 @@ function ServicePreviewIcon({ name }: { name: string }) {
   );
 }
 function Home() {
-  const [clinic, setClinic] = useState<ClinicInfo | null>(null);
-
-  // Load clinic contact information from the backend.
-  useEffect(() => {
-    let cancelled = false;
-
-    async function loadClinicInfo() {
-      try {
-        const response = await fetch(`${API_URL}/clinic`);
-
-        if (!response.ok) {
-          throw new Error("Could not load clinic information.");
-        }
-
-        const data = await response.json();
-
-        if (!cancelled && data.success && data.clinic) {
-          setClinic(data.clinic as ClinicInfo);
-        }
-      } catch (error) {
-        console.error("Unable to load clinic information:", error);
-      }
-    }
-
-    void loadClinicInfo();
-
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  // Fallback values preserve the page if the API is unavailable.
-  const clinicName =
-    clinic?.clinic_name || "Sparkling Smile Dental Clinic";
-
-  const clinicPhone = clinic?.phone || "0503002504";
+  const clinicName = "Sparkling Smile Dental Clinic";
+  const clinicPhone = "0503002504";
   const alternatePhone = "026272214";
-
   const clinicEmail = "sparklingsmiledentalclinicad@gmail.com";
-
   const clinicAddress =
-    clinic?.address ||
     "103, Building 159, Sector E 15, Hamdan Street, Near Bilal Mosque, Opposite Al Salama Hospital, Al Zahiyah, Abu Dhabi";
-
-  const whatsappLink = getWhatsAppLink(
-    clinic?.whatsapp_number || "0503002504"
-  );
+  const whatsappLink = getWhatsAppLink("0503002504");
 
   const servicePreview = [
     {

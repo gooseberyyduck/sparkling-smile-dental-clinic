@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+
 import {
   Link,
   useParams,
@@ -264,61 +264,77 @@ type Service = {
   faqs: FAQ[];
 };
 
+
+const STATIC_SERVICES: Service[] = Object.entries(SERVICE_CONTENT).map(
+  ([slug, content], index) => {
+    const nameBySlug: Record<string, string> = {
+      "dental-jewellery": "Dental Jewellery",
+      "dental-veneers": "Dental Veneers",
+      "digital-smile-design": "Digital Smile Design",
+      "hollywood-smile": "Hollywood Smile",
+      "snap-on-smile": "Snap-On Smile",
+      "teeth-whitening": "Teeth Whitening",
+      "general-dentistry": "General Dentistry",
+      "dental-cleaning": "Dental Cleaning",
+      "dental-polishing": "Dental Polishing",
+      "dental-filling": "Dental Filling",
+      "fluoride-treatment": "Fluoride Treatment",
+      "gum-disease-treatment": "Gum Disease Treatment",
+      "dental-x-ray": "Dental X-Ray",
+      "tooth-sensitivity-management": "Tooth Sensitivity Management",
+      "dental-crown": "Dental Crown",
+      "dental-bridges": "Dental Bridges",
+      "crowns-bridges": "Crowns and Bridges",
+      "flexible-denture": "Flexible Denture",
+      "acrylic-denture": "Acrylic Denture",
+      "prosthodontics": "Prosthodontics",
+      "post-and-core": "Post and Core",
+      "root-canal-treatment": "Root Canal Treatment",
+      "re-root-canal-treatment": "Re-Root Canal Treatment",
+      "single-sitting-root-canal-treatment": "Single Sitting Root Canal Treatment",
+      "calcified-root-canal-treatment": "Calcified Root Canal Treatment",
+      "wisdom-tooth-root-canal-treatment": "Wisdom Tooth Root Canal Treatment",
+      "dental-surgery": "Dental Surgery",
+      "tooth-extraction": "Tooth Extraction",
+      "pediatric-dentistry": "Pediatric Dentistry",
+    };
+    const name = nameBySlug[slug] || slug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+    const category = slug.includes("root-canal")
+      ? "Root Canal Treatment"
+      : ["dental-veneers", "dental-jewellery", "digital-smile-design", "hollywood-smile", "snap-on-smile", "teeth-whitening"].includes(slug)
+        ? "Cosmetic Dentistry"
+        : ["dental-crown", "dental-bridges", "crowns-bridges", "flexible-denture", "acrylic-denture", "prosthodontics", "post-and-core"].includes(slug)
+          ? "Restorative Dentistry"
+          : ["tooth-extraction", "dental-surgery"].includes(slug)
+            ? "Oral Surgery"
+            : "General Dentistry";
+    return {
+      id: index + 1,
+      name,
+      slug,
+      category,
+      short_description: content.overview.slice(0, 180).trim() + "...",
+      overview: content.overview,
+      when_needed: content.when_needed,
+      procedure_details: content.procedure_details,
+      benefits: content.benefits,
+      aftercare: content.aftercare,
+      duration_minutes: 30,
+      price: null,
+      image: null,
+      faqs: [],
+    };
+  }
+);
+
 function ServiceDetail() {
   const { slug } = useParams<{
     slug: string;
   }>();
 
-  const [service, setService] =
-    useState<Service | null>(null);
-
-  const [loading, setLoading] =
-    useState(true);
-
-  const [error, setError] =
-    useState("");
-
-  /*
-  ============================================================
-  LOAD SERVICE FROM API
-  ============================================================
-  */
-
-  useEffect(() => {
-    async function fetchService() {
-      try {
-        setLoading(true);
-        setError("");
-
-        const response =
-          await fetch(
-            `http://localhost:5000/api/services/${slug}`
-          );
-
-        if (!response.ok) {
-          throw new Error(
-            "Service not found"
-          );
-        }
-
-        const result =
-          await response.json();
-
-        setService(result.data);
-      } catch (err) {
-        console.error(err);
-
-        setError(
-          "We couldn't find this service."
-        );
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchService();
-  }, [slug]);
-
+  const service = STATIC_SERVICES.find((item) => item.slug === slug) || null;
+  const loading = false;
+  const error = service ? "" : "We couldn't find this service.";
 
   /*
   ============================================================
