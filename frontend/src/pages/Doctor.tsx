@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import "../index.css";
 
@@ -116,24 +117,18 @@ function Doctor() {
                   and the UAE, including practice in Abu Dhabi since 2019.
                 </p>
               </article>
-<article className="doctor-detail-card">
-                <div className="service-icon" aria-hidden="true">MDS</div>
-                <h3>Specialist Qualification</h3>
-                <p>
-                  MDS in Conservative Dentistry &amp; Endodontics from
-                  the Postgraduate Institute of Dental Sciences (PGIDS), Rohtak.
-                </p>
-              </article>
             </div>
 
             <div className="doctor-biography-sections">
               <article className="doctor-biography-block">
                 <h2>Education</h2>
                 <p>
+                  <strong>All India Rank 1 – MDS Entrance Examination (2010)</strong>
+                </p>
+                <p>
                   Dr. Raheja earned her <strong>MDS in Conservative Dentistry
                   &amp; Endodontics</strong> from the <strong>Postgraduate
                   Institute of Dental Sciences (PGIDS), Rohtak</strong>.
-
                 </p>
               </article>
 
