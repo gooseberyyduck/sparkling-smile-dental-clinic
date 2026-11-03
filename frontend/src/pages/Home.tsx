@@ -108,7 +108,7 @@ function Home() {
   const alternatePhone = "026272214";
   const clinicEmail = "sparklingsmiledentalclinicad@gmail.com";
   const clinicAddress =
-    "103, Building 159, Sector E 15, Hamdan Street, Near Bilal Mosque, Opposite Al Salama Hospital, Al Zahiyah, Abu Dhabi";
+    "103, Building 159, Sector E 15, Hamdan Street, Opposite Al Salama Hospital, Al Zahiyah, Abu Dhabi";
   const whatsappLink = getWhatsAppLink("0503002504");
 
   const servicePreview = [
