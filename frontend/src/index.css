@@ -4131,3 +4131,234 @@ body,
   background: #ffffff;
   padding: 20px 24px;
 }
+/* ==========================================
+   SPARKLING SMILE – VIBRANT BLUE THEME
+   ========================================== */
+
+/* HERO SECTION – BRIGHT SKY BLUE */
+.hero,
+.hero-section,
+.home-hero {
+  background: linear-gradient(
+    135deg,
+    #b8f0ff 0%,
+    #8be1ff 45%,
+    #65ceff 100%
+  ) !important;
+}
+
+/* HERO HEADING */
+.hero h1,
+.hero-section h1,
+.home-hero h1 {
+  color: #06345c !important;
+}
+
+/* HERO DESCRIPTION */
+.hero p,
+.hero-section p,
+.home-hero p {
+  color: #174f75 !important;
+}
+
+/* PRIMARY BUTTONS – ELECTRIC BLUE */
+.hero button,
+.hero a.button,
+.hero-section button,
+.hero-section a.button,
+.home-hero button,
+.home-hero a.button {
+  background: linear-gradient(135deg, #087cff, #0052e8) !important;
+  color: #ffffff !important;
+  border: 2px solid #0052e8 !important;
+  box-shadow: 0 6px 18px rgba(0, 82, 232, 0.25);
+  transition: all 0.3s ease;
+}
+
+/* BUTTON HOVER */
+.hero button:hover,
+.hero a.button:hover,
+.hero-section button:hover,
+.hero-section a.button:hover,
+.home-hero button:hover,
+.home-hero a.button:hover {
+  background: #003dbb !important;
+  transform: translateY(-3px);
+  box-shadow: 0 9px 22px rgba(0, 61, 187, 0.3);
+}
+
+/* SECONDARY BUTTON */
+.hero .secondary-button,
+.hero-section .secondary-button {
+  background: #ffffff !important;
+  color: #0066dc !important;
+  border: 2px solid #ffffff !important;
+}
+
+/* NAVIGATION */
+header,
+.navbar,
+nav {
+  background: #ffffff !important;
+}
+
+/* NAVIGATION LINKS */
+nav a,
+.navbar a {
+  color: #082d52 !important;
+}
+
+nav a:hover,
+.navbar a:hover {
+  color: #007bff !important;
+}
+
+/* TRUST BADGE */
+.hero .trust-badge,
+.hero-section .trust-badge {
+  background: #06345c !important;
+  color: #ffffff !important;
+}
+
+/* SECTION BACKGROUNDS */
+section {
+  background-color: #ffffff;
+}
+
+/* SERVICE AND FEATURE CARDS */
+.service-card,
+.doctor-detail-card,
+.feature-card {
+  background: #effaff;
+  border: 1px solid #bceaff;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover,
+.feature-card:hover {
+  border-color: #42baff;
+  box-shadow: 0 10px 28px rgba(0, 123, 255, 0.13);
+}
+
+/* ACCENT ELEMENTS */
+a:hover {
+  color: #007bff;
+}
+
+/* ==========================================
+   SPARKLING SMILE – GLOBAL CYAN BACKGROUNDS
+   ========================================== */
+
+:root {
+  --clinic-background: #B8F0FF;
+}
+
+/* Overall website background */
+html,
+body,
+#root {
+  background-color: var(--clinic-background) !important;
+}
+
+/* Home page backgrounds */
+.hero,
+.hero-section,
+.home-hero,
+.about-section,
+.team-section,
+.services-section,
+.gallery-section,
+.contact-section,
+.appointment-section {
+  background: var(--clinic-background) !important;
+}
+
+/* Services page backgrounds */
+.service-page-hero,
+.service-category,
+.service-specialty-section,
+.root-canal-feature,
+.services-bottom-cta {
+  background: var(--clinic-background) !important;
+}
+
+/* Service details page backgrounds */
+.service-detail-hero,
+.service-detail-layout,
+.service-detail-section {
+  background: var(--clinic-background) !important;
+}
+
+/* Appointment page backgrounds */
+.appointment-page-hero,
+.appointment-layout,
+.appointment-main,
+.appointment-sidebar {
+  background: var(--clinic-background) !important;
+}
+
+/* Doctor page backgrounds */
+.doctor-profile-page,
+.doctor-profile-hero,
+.doctor-profile-details,
+.doctor-biography-block {
+  background: var(--clinic-background) !important;
+}
+
+/* SERVICES PAGE – BACKGROUND ONLY */
+
+.service-category {
+  background: #B8F0FF !important;
+}
+
+/* Preserve original treatment card colours */
+.service-category .service-card {
+  background: #FFFFFF !important;
+}
+
+/* Preserve featured specialty card styling */
+.service-specialty-section .service-card,
+.service-specialty-section .feature-card {
+  background: initial;
+}
+
+/* Keep navigation unchanged */
+header,
+nav,
+.navbar {
+  background: #FFFFFF !important;
+}
+
+/* SERVICES PAGE – MAIN BACKGROUND ONLY */
+
+.site > main.section {
+  background-color: #B8F0FF !important;
+}
+
+/* RESTORE ORIGINAL ROOT CANAL FEATURE CARD COLOUR */
+
+.root-canal-feature {
+  background: linear-gradient(
+    135deg,
+    #E8F3FF,
+    #FFFFFF
+  ) !important;
+
+  border-color: #A8CDED !important;
+}
+
+/* SHOW BOOK APPOINTMENT BUTTON ON MOBILE */
+
+@media (max-width: 700px) {
+  .navbar .nav-button {
+    display: inline-flex !important;
+    flex-shrink: 0;
+    min-height: 40px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  .navbar-inner {
+    gap: 8px;
+  }
+}
