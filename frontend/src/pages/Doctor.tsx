@@ -1,10 +1,29 @@
 
 import { Link } from "react-router-dom";
 import "../index.css";
+import Seo from "../components/Seo";
+import { CLINIC, absoluteUrl } from "../seo/site";
 
 function Doctor() {
   return (
     <div className="site doctor-profile-page">
+      <Seo
+        title="Dr. Jyoti Raheja, Dentist & Endodontist in Abu Dhabi | Sparkling Smile"
+        description="Dr. Jyoti Raheja, MDS in Conservative Dentistry & Endodontics, brings 18+ years of experience to Sparkling Smile Dental Clinic, Al Zahiyah, Abu Dhabi."
+        path="/doctor"
+        image="/images/doctor.jpg"
+        type="profile"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Dr. Jyoti Raheja",
+          jobTitle: "Dentist",
+          image: absoluteUrl("/images/doctor.jpg"),
+          hasCredential: "MDS – Conservative Dentistry & Endodontics",
+          alumniOf: "PGIDS Rohtak",
+          worksFor: { "@type": "Dentist", "@id": absoluteUrl("/#clinic"), name: CLINIC.name },
+        }}
+      />
       <header className="navbar">
         <div className="container navbar-inner">
           <Link to="/" className="brand">
@@ -38,7 +57,7 @@ function Doctor() {
             <div className="doctor-profile-photo">
               <div className="image-placeholder">
                 <img
-                  src="/images/doctor.jpg"                  
+                  src="/images/doctor.webp" width="520" height="606"                  
                   alt="Dr. Jyoti Raheja"
                 />
               </div>

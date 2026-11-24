@@ -3,6 +3,8 @@ import { useState } from "react";
 
 
 import { Link } from "react-router-dom";
+import Seo from "../components/Seo";
+import { dentistSchema } from "../seo/site";
 
 
 
@@ -59,7 +61,7 @@ const STATIC_SERVICES: Service[] = [
   { id: 6, name: "Post and Core", slug: "post-and-core", category: "Restorative Dentistry", short_description: "A restorative procedure used to support and rebuild a damaged tooth.", duration_minutes: 30, price: null, image: null },
   { id: 7, name: "General Dentistry", slug: "general-dentistry", category: "General Dentistry", short_description: "General dental examinations, diagnosis and routine dental care.", duration_minutes: 30, price: null, image: null },
   { id: 8, name: "Dental Cleaning", slug: "dental-cleaning", category: "General Dentistry", short_description: "Professional cleaning to remove plaque and tartar buildup.", duration_minutes: 30, price: null, image: null },
-  { id: 9, name: "Dental Polishing", slug: "polishing", category: "General Dentistry", short_description: "Professional polishing to help clean and smooth tooth surfaces.", duration_minutes: 30, price: null, image: null },
+  { id: 9, name: "Scaling and Polishing", slug: "polishing", category: "General Dentistry", short_description: "Professional scaling and polishing to remove plaque and tartar and smooth tooth surfaces.", duration_minutes: 30, price: null, image: null },
   { id: 10, name: "Dental Filling", slug: "dental-filling", category: "Restorative Dentistry", short_description: "Restoration of teeth affected by cavities or minor damage.", duration_minutes: 30, price: null, image: null },
   { id: 11, name: "Tooth Extraction", slug: "tooth-extraction", category: "Oral Surgery", short_description: "Removal of a tooth when extraction is considered necessary.", duration_minutes: 30, price: null, image: null },
   { id: 12, name: "Dental Surgery", slug: "dental-surgery", category: "Oral Surgery", short_description: "Dental surgical procedures following clinical assessment.", duration_minutes: 30, price: null, image: null },
@@ -76,6 +78,8 @@ const STATIC_SERVICES: Service[] = [
   { id: 23, name: "Fluoride Treatment", slug: "fluoride-treatment", category: "Preventive Dentistry", short_description: "A preventive treatment that helps strengthen tooth enamel.", duration_minutes: 30, price: null, image: null },
   { id: 24, name: "Dental X-Ray", slug: "dental-x-ray", category: "Diagnostic Dentistry", short_description: "Dental imaging to help assess teeth and surrounding structures.", duration_minutes: 30, price: null, image: null },
   { id: 25, name: "Tooth Sensitivity Management", slug: "tooth-sensitivity-management", category: "General Dentistry", short_description: "Assessment and care for teeth affected by sensitivity.", duration_minutes: 30, price: null, image: null },
+  { id: 26, name: "Pediatric Dentistry", slug: "pediatric-dentistry", category: "General Dentistry", short_description: "Child-friendly dental check-ups, preventive care and treatment for children in Abu Dhabi.", duration_minutes: 30, price: null, image: null },
+  { id: 27, name: "Cosmetic Dentistry", slug: "cosmetic-dentistry", category: "Cosmetic Dentistry", short_description: "Smile enhancement treatments such as whitening, veneers, bonding and contouring.", duration_minutes: 30, price: null, image: null },
 ];
 
 const ROOT_CANAL_FALLBACK: Service = {
@@ -194,123 +198,124 @@ function getServiceImage(service: Service): string {
 
 
 
-    "dental-jewellery": "dental-jewellery.jpg",
+    "dental-jewellery": "dental-jewellery.webp",
 
 
 
-    "dental-veneers": "dental-veneers.jpg",
+    "dental-veneers": "dental-veneers.webp",
 
 
 
-    "digital-smile-design": "digital-smile-design.jpg",
+    "digital-smile-design": "digital-smile-design.webp",
 
 
 
-    "hollywood-smile": "hollywood-smile.jpg",
+    "hollywood-smile": "hollywood-smile.webp",
 
 
 
-    "snap-on-smile": "snap-on-smile.jpg",
+    "snap-on-smile": "snap-on-smile.webp",
 
 
 
-    "teeth-whitening": "teeth-whitening.jpg",
+    "teeth-whitening": "teeth-whitening.webp",
 
 
 
-    "dental-whitening": "teeth-whitening.jpg",
+    "dental-whitening": "teeth-whitening.webp",
 
 
 
-    "dental-crown": "dental-crown.jpg",
+    "dental-crown": "dental-crown.webp",
 
 
 
-    "dental-bridges": "dental-bridges.jpg",
+    "dental-bridges": "dental-bridges.webp",
 
 
 
-    "crowns-bridges": "crowns-bridges.jpg",
+    "crowns-bridges": "crowns-bridges.webp",
 
 
 
-    "flexible-denture": "flexible-denture.jpg",
+    "flexible-denture": "flexible-denture.webp",
 
 
 
-    "acrylic-denture": "acrylic-denture.jpg",
+    "acrylic-denture": "acrylic-denture.webp",
 
 
 
-    "dental-cleaning": "dental-cleaning.jpg",
+    "dental-cleaning": "dental-cleaning.webp",
 
 
 
-    "dental-filling": "dental-filling.jpg",
+    "dental-filling": "dental-filling.webp",
 
 
 
-    "fluoride-treatment": "fluoride-treatment.jpg",
+    "fluoride-treatment": "fluoride-treatment.webp",
 
 
 
-    "gum-disease-treatment": "gum-disease-treatment.jpg",
+    "gum-disease-treatment": "gum-disease-treatment.webp",
 
 
 
-    "dental-x-ray": "dental-x-ray.jpg",
+    "dental-x-ray": "dental-x-ray.webp",
 
 
 
-    "tooth-sensitivity-management": "tooth-sensitivity.jpg",
+    "tooth-sensitivity-management": "tooth-sensitivity.webp",
 
 
 
-    "general-dentistry": "general-dentistry.jpg",
+    "general-dentistry": "general-dentistry.webp",
 
 
 
-    "tooth-extraction": "tooth-extraction.jpg",
+    "tooth-extraction": "tooth-extraction.webp",
 
 
 
-    "dental-surgery": "dental-surgery.jpg",
+    "dental-surgery": "dental-surgery.webp",
 
 
 
-    "pediatric-dentistry": "pediatric-dentistry.jpg",
+    "pediatric-dentistry": "pediatric-dentistry.webp",
 
 
 
-    "prosthodontics": "prosthodontics.jpg",
+    "prosthodontics": "prosthodontics.webp",
 
 
 
-    "polishing": "dental-polishing.jpg",
+    "polishing": "dental-polishing.webp",
+    "cosmetic-dentistry": "hollywood-smile.webp",
 
 
 
-    "re-root-canal-treatment": "re-root-canal.jpg",
+    "re-root-canal-treatment": "re-root-canal.webp",
 
 
 
-    "root-canal-treatment": "root-canal.jpg",
+    "root-canal-treatment": "root-canal.webp",
 
 
 
-    "single-sitting-root-canal-treatment": "single-sitting-root-canal.jpg",
+    "single-sitting-root-canal-treatment": "single-sitting-root-canal.webp",
 
 
 
-    "calcified-root-canal-treatment": "calcified-root-canal.jpg",
+    "calcified-root-canal-treatment": "calcified-root-canal.webp",
 
 
 
-    "wisdom-tooth-root-canal-treatment": "wisdom-tooth-root-canal.jpg",
+    "wisdom-tooth-root-canal-treatment": "wisdom-tooth-root-canal.webp",
 
 
 
-    "post-and-core": "post-and-core.jpg",
+    "post-and-core": "post-and-core.webp",
 
 
 
@@ -342,7 +347,7 @@ function getServiceImage(service: Service): string {
 
 
 
-    return "/images/services/root-canal.jpg";
+    return "/images/services/root-canal.webp";
 
 
 
@@ -354,7 +359,7 @@ function getServiceImage(service: Service): string {
 
 
 
-    return "/images/services/dental-cleaning.jpg";
+    return "/images/services/dental-cleaning.webp";
 
 
 
@@ -366,7 +371,7 @@ function getServiceImage(service: Service): string {
 
 
 
-    return "/images/services/dental-polishing.jpg";
+    return "/images/services/dental-polishing.webp";
 
 
 
@@ -378,7 +383,7 @@ function getServiceImage(service: Service): string {
 
 
 
-    return "/images/services/teeth-whitening.jpg";
+    return "/images/services/teeth-whitening.webp";
 
 
 
@@ -390,7 +395,7 @@ function getServiceImage(service: Service): string {
 
 
 
-    return "/images/services/dental-veneers.jpg";
+    return "/images/services/dental-veneers.webp";
 
 
 
@@ -402,7 +407,7 @@ function getServiceImage(service: Service): string {
 
 
 
-    return "/images/services/dental-jewellery.jpg";
+    return "/images/services/dental-jewellery.webp";
 
 
 
@@ -414,7 +419,7 @@ function getServiceImage(service: Service): string {
 
 
 
-    return "/images/services/hollywood-smile.jpg";
+    return "/images/services/hollywood-smile.webp";
 
 
 
@@ -426,7 +431,7 @@ function getServiceImage(service: Service): string {
 
 
 
-    return "/images/services/dental-crown.jpg";
+    return "/images/services/crowns-bridges.webp";
 
 
 
@@ -438,7 +443,7 @@ function getServiceImage(service: Service): string {
 
 
 
-    return "/images/services/flexible-denture.jpg";
+    return "/images/services/flexible-denture.webp";
 
 
 
@@ -450,7 +455,7 @@ function getServiceImage(service: Service): string {
 
 
 
-    return "/images/services/dental-surgery.jpg";
+    return "/images/services/dental-surgery.webp";
 
 
 
@@ -462,7 +467,7 @@ function getServiceImage(service: Service): string {
 
 
 
-    return "/images/services/pediatric-dentistry.jpg";
+    return "/images/services/pediatric-dentistry.webp";
 
 
 
@@ -474,7 +479,7 @@ function getServiceImage(service: Service): string {
 
 
 
-    return "/images/services/gum-disease-treatment.jpg";
+    return "/images/services/gum-disease-treatment.webp";
 
 
 
@@ -486,7 +491,7 @@ function getServiceImage(service: Service): string {
 
 
 
-    return "/images/services/fluoride-treatment.jpg";
+    return "/images/services/fluoride-treatment.webp";
 
 
 
@@ -498,7 +503,7 @@ function getServiceImage(service: Service): string {
 
 
 
-    return "/images/services/dental-x-ray.jpg";
+    return "/images/services/dental-x-ray.webp";
 
 
 
@@ -510,7 +515,7 @@ function getServiceImage(service: Service): string {
 
 
 
-    return "/images/services/dental-filling.jpg";
+    return "/images/services/dental-filling.webp";
 
 
 
@@ -522,7 +527,7 @@ function getServiceImage(service: Service): string {
 
 
 
-    return "/images/services/prosthodontics.jpg";
+    return "/images/services/prosthodontics.webp";
 
 
 
@@ -530,7 +535,7 @@ function getServiceImage(service: Service): string {
 
 
 
-  return "/images/services/general-dentistry.jpg";
+  return "/images/services/general-dentistry.webp";
 
 
 
@@ -1349,10 +1354,13 @@ function Services() {
 
 
   return (
-
-
-
     <div className="site">
+      <Seo
+        title="Dental Services in Abu Dhabi | Root Canal, Cosmetic & General Dentistry"
+        description="Explore dental treatments at Sparkling Smile Dental Clinic, Al Zahiyah, Abu Dhabi: root canal, cleaning, fillings, crowns, veneers, teeth whitening, dentures and more."
+        path="/services"
+        schema={dentistSchema}
+      />
 
 
 
@@ -1376,7 +1384,7 @@ function Services() {
 
 
 
-              src="/images/sparkling-smile-logo.png"
+              src="/images/sparkling-smile-logo.webp" width="160" height="155"
 
 
 

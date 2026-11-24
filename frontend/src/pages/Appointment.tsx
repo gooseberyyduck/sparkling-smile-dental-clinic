@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Seo from "../components/Seo";
 
 const WHATSAPP_URL =
   `https://wa.me/971503002504?text=${encodeURIComponent(
@@ -24,6 +25,12 @@ function Appointment() {
         color: "#0B1F3A",
       }}
     >
+      <Seo
+        title="Book a Dental Appointment | Sparkling Smile Dental Clinic"
+        description="Book an appointment at Sparkling Smile Dental Clinic, Al Zahiyah, Abu Dhabi via WhatsApp on 050 300 2504."
+        path="/appointment"
+        noindex
+      />
       <h1>Contact us on WhatsApp</h1>
 
       <p>

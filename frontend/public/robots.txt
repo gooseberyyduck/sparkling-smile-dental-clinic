@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /appointment
+
+Sitemap: https://sparklingsmiledentalclinic.ae/sitemap.xml

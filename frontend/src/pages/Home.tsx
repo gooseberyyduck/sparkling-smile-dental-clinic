@@ -2,6 +2,33 @@
 
 import { Link } from "react-router-dom";
 import "../index.css";
+import Seo from "../components/Seo";
+import { dentistSchema } from "../seo/site";
+import { FaqList, faqSchema } from "../components/ContentBlocks";
+
+const WHY_CHOOSE = [
+  { title: "Personalised Treatment Plans", text: "We recommend treatments based on your oral health, concerns, and individual requirements." },
+  { title: "Multiple Dental Services", text: "Patients can explore preventive, cosmetic, restorative, and general dentistry treatments." },
+  { title: "Patient-Focused Consultations", text: "We explain dental conditions and available treatment options before proceeding." },
+  { title: "Comfortable Environment", text: "Our welcoming approach helps patients feel more at ease during dental visits." },
+  { title: "Focus on Long-Term Oral Health", text: "We consider both immediate dental concerns and ongoing oral health needs." },
+];
+
+const TREATMENT_STEPS = [
+  { title: "Initial Consultation", text: "Discuss your dental concerns, symptoms, and expectations with the dentist." },
+  { title: "Dental Examination", text: "The dentist evaluates your teeth and gums to understand your oral health." },
+  { title: "Treatment Recommendations", text: "Suitable procedures are explained based on the examination findings." },
+  { title: "Treatment Planning", text: "We discuss the next steps, expected appointments, and relevant treatment considerations." },
+];
+
+const HOME_FAQS = [
+  { question: "What dental treatments are available at Sparkling Smile Dental Clinic?", answer: "We offer general dentistry, dental cleaning, root canal treatment, teeth whitening, cosmetic dentistry, and crowns and bridges." },
+  { question: "How often should I visit a dentist in Abu Dhabi?", answer: "Many patients benefit from a dental check-up every six months. Your dentist may recommend more frequent visits based on your oral health." },
+  { question: "Is professional dental cleaning necessary if I brush every day?", answer: "Yes. Regular brushing cannot remove all hardened plaque and tartar. Professional cleaning helps remove these deposits and supports gum health." },
+  { question: "When should I consider root canal treatment?", answer: "Root canal treatment may be recommended when decay or infection reaches the inner pulp of a tooth. A dental examination helps determine whether this treatment is necessary." },
+  { question: "Can teeth whitening remove all types of stains?", answer: "Teeth whitening can improve certain types of discolouration. However, the results depend on the cause and severity of the stains." },
+  { question: "What is the purpose of dental crowns and bridges?", answer: "Crowns restore and protect damaged teeth. Bridges replace missing teeth and help restore chewing function." },
+];
 
 function getWhatsAppLink(number: string): string {
   let digits = number.replace(/\D/g, "");
@@ -115,49 +142,55 @@ function Home() {
     {
       title: "General Dentistry",
       description:
-        "Comprehensive dental care focused on maintaining healthy teeth and gums.",
+        "Regular dental examinations help identify tooth decay, gum problems, and other oral health concerns at an early stage. Our general dentistry services focus on maintaining healthy teeth and gums. We provide appropriate examinations and treatments based on individual needs.",
       slug: "general-dentistry",
       icon: "tooth",
     },
     {
       title: "Dental Cleaning",
       description:
-        "Professional cleaning to help maintain oral hygiene and a healthy smile.",
+        "Daily brushing and flossing may not remove all plaque and tartar deposits. Professional dental cleaning helps remove these accumulated deposits. It also supports gum health and better oral hygiene.",
       slug: "dental-cleaning",
       icon: "sparkles",
     },
     {
       title: "Root Canal Treatment",
       description:
-        "Treatment designed to manage infection and preserve your natural tooth.",
+        "Deep tooth decay and infection can affect the inner tissues of a tooth. This may cause pain and sensitivity. Root canal treatment helps remove infected tissue and manage the infection. It also helps preserve the natural tooth whenever possible.",
       slug: "root-canal-treatment",
       icon: "shield",
     },
     {
       title: "Teeth Whitening",
       description:
-        "Professional cosmetic treatment to enhance the brightness of your smile.",
+        "Food, beverages, and other factors can cause tooth discolouration. These stains may affect the appearance of your smile. Professional teeth whitening helps reduce certain stains and improve tooth brightness. A dental assessment helps determine whether the treatment is suitable.",
       slug: "teeth-whitening",
       icon: "smile",
     },
     {
       title: "Cosmetic Dentistry",
       description:
-        "Personalised options to improve the appearance of your smile.",
-      slug: "dental-veneers",
+        "Stained, uneven, or imperfect-looking teeth can affect smile confidence. Cosmetic dentistry offers different options to improve the appearance of your teeth. Treatments such as dental veneers can help address selected aesthetic concerns.",
+      slug: "cosmetic-dentistry",
       icon: "sun",
     },
     {
       title: "Crowns and Bridges",
       description:
-        "Restorative dental treatments designed to restore damaged teeth and replace missing teeth, improving function and appearance.",
-      slug: "crowns-and-bridges",
+        "Damaged and missing teeth can affect chewing, speech, and smile appearance. Dental crowns help restore and protect weakened teeth. Bridges replace missing teeth and help improve dental function.",
+      slug: "crowns-bridges",
       icon: "crown",
     },
   ];
 
   return (
     <div className="site">
+      <Seo
+        title="Dentist in Abu Dhabi | Sparkling Smile Dental Clinic"
+        description="Looking for a dentist in Abu Dhabi? Visit Sparkling Smile Dental Clinic for quality dental care, experienced dentists and personalised treatments."
+        path="/"
+        schema={[dentistSchema, faqSchema(HOME_FAQS)]}
+      />
       {/* =====================================================
           NAVBAR
           ===================================================== */}
@@ -165,7 +198,7 @@ function Home() {
       <header className="navbar">
         <div className="container navbar-inner">
           <Link to="/" className="brand">
-            <img src="/images/sparkling-smile-logo.png" alt="Sparkling Smile Dental Clinic" className="brand-logo-image"/>
+            <img src="/images/sparkling-smile-logo.webp" alt="Sparkling Smile Dental Clinic logo" className="brand-logo-image" width="160" height="155"/>
 
             <div className="brand-text">
               <span className="brand-name">
@@ -179,7 +212,7 @@ function Home() {
           <nav className="nav-links">
             <Link to="/">Home</Link>
 
-            <a href="#about">About</a>
+            <Link to="/about">About</Link>
 
             <Link to="/services">Services</Link>
 
@@ -187,7 +220,7 @@ function Home() {
 
             <a href="#gallery">Gallery</a>
 
-            <a href="#contact">Contact</a>
+            <Link to="/contact">Contact</Link>
           </nav>
 
           <Link to="/appointment" className="nav-button">
@@ -215,8 +248,15 @@ function Home() {
               </h1>
 
               <p className="hero-description">
-                Professional dental care delivered with expertise,
-                precision, and genuine attention to every patient.
+                Maintaining a healthy smile requires regular attention and
+                professional guidance. At Sparkling Smile Dental Clinic, we
+                provide a wide array of services for those looking for a
+                trustworthy dentist in Abu Dhabi. Our services include
+                routine check-ups, cleaning, root canal treatment,
+                whitening, cosmetic dentistry, and restorative services. We
+                focus on understanding your dental concerns and
+                recommending suitable treatments. Our welcoming environment
+                also helps make every visit more comfortable.
               </p>
 
               <div className="hero-buttons">
@@ -255,7 +295,7 @@ function Home() {
 
             <div className="hero-image">
               <div className="image-placeholder clinic-hero-frame">
-                <img src="/images/clinic-interior-hero.jpg"alt="Sparkling Smile Dental Clinic interior"className="clinic-hero-image"/>
+                <img src="/images/clinic-interior-hero.webp" alt="Reception at Sparkling Smile Dental Clinic, Al Zahiyah, Abu Dhabi" className="clinic-hero-image" width="979" height="942" fetchPriority="high"/>
               </div>
 
               <div className="hero-badge">
@@ -277,7 +317,7 @@ function Home() {
           <div className="container two-column">
             <div className="section-image">
               <div className="image-placeholder clinic-about-frame">
-                <img src="/images/clinic-gallery-1.jpg" alt="Inside Sparkling Smile Dental Clinic" className="clinic-about-photo"/>
+                <img loading="lazy" src="/images/clinic-gallery-1.webp" width="1144" height="908" alt="Treatment room at Sparkling Smile Dental Clinic in Abu Dhabi" className="clinic-about-photo"/>
               </div>
             </div>
 
@@ -289,15 +329,21 @@ function Home() {
               </h2>
 
               <p>
-                At Sparkling Smile Dental Clinic, our goal is to
-                provide professional dental care in a comfortable,
-                welcoming, and patient-focused environment.
+                At Sparkling Smile Dental Clinic, our goal is to provide
+                professional dental care in a comfortable, welcoming, and
+                patient-focused environment. As a dental clinic in Abu
+                Dhabi, we understand that every patient has different oral
+                health needs. These may include routine dental
+                maintenance, tooth pain, damaged teeth, or concerns about
+                smile appearance.
               </p>
 
               <p>
-                From routine dental care to specialized treatments,
-                every treatment plan is tailored to the individual
-                needs of our patients.
+                Our approach begins with understanding your concerns and
+                evaluating your dental health. We then recommend suitable
+                treatment options based on your needs. We also explain
+                procedures and discuss available solutions. This helps
+                patients make informed decisions about their oral health.
               </p>
 
               <a href="#contact" className="text-link">
@@ -324,8 +370,12 @@ function Home() {
               </h2>
 
               <p>
-                Explore our range of general, cosmetic,
-                restorative, surgical, and root canal treatments.
+                Maintaining healthy teeth and gums requires regular
+                attention. From preventive examinations to restorative and
+                cosmetic procedures, our dental clinic in Abu Dhabi offers
+                treatments for common oral health concerns. We help
+                patients address existing dental problems and maintain
+                their smiles.
               </p>
             </div>
 
@@ -370,6 +420,119 @@ function Home() {
         </section>
 
         {/* =====================================================
+            WHY CHOOSE US
+            ===================================================== */}
+
+        <section className="section home-info-section why-choose-section">
+          <div className="container">
+            <div className="section-heading centered">
+              <p className="eyebrow">WHY CHOOSE US</p>
+
+              <h2>Why choose Sparkling Smile Dental Clinic?</h2>
+
+              <p>
+                Finding the best dentist in Abu Dhabi involves more than
+                choosing a convenient location. Patients also need clear
+                communication and appropriate treatment recommendations. A
+                comfortable environment is equally important when seeking
+                professional dental care.
+              </p>
+
+              <p>
+                At Sparkling Smile Dental Clinic, we consider each
+                patient's dental condition and individual requirements.
+              </p>
+            </div>
+
+            <div className="info-grid">
+              {WHY_CHOOSE.map((item) => (
+                <div className="info-card" key={item.title}>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            HOW WE APPROACH TREATMENT
+            ===================================================== */}
+
+        <section className="section home-info-section approach-section">
+          <div className="container">
+            <div className="section-heading centered">
+              <p className="eyebrow">OUR PROCESS</p>
+
+              <h2>How we approach your dental treatment</h2>
+
+              <p>
+                Understanding what happens during an appointment can make
+                dental visits less stressful. This is especially helpful if
+                you are visiting a dentist in Abu Dhabi for the first time.
+              </p>
+
+              <p>Our consultation and treatment planning approach includes:</p>
+            </div>
+
+            <div className="info-grid">
+              {TREATMENT_STEPS.map((step, index) => (
+                <div className="info-card" key={step.title}>
+                  <span className="step-number">{index + 1}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                </div>
+              ))}
+            </div>
+
+            <p className="info-note">
+              This process helps patients understand their dental needs. It
+              also allows them to make informed decisions about their
+              treatment.
+            </p>
+          </div>
+        </section>
+
+        {/* =====================================================
+            PREVENTIVE CARE
+            ===================================================== */}
+
+        <section className="section home-info-section preventive-section">
+          <div className="container">
+            <div className="section-heading centered">
+              <p className="eyebrow">PREVENTIVE CARE</p>
+
+              <h2>Keep your smile healthy with preventive dental care</h2>
+            </div>
+
+            <div className="home-prose">
+              <p>
+                Not every dental problem causes noticeable discomfort in
+                its early stages. Regular examinations can help identify
+                developing concerns before they become more complicated.
+                Good oral hygiene also plays an important role in
+                preventing common dental problems.
+              </p>
+
+              <p>
+                Brush twice daily and floss regularly to maintain clean
+                teeth. Professional dental cleaning and routine check-ups
+                provide additional support. These habits help maintain
+                healthy teeth and gums over time.
+              </p>
+
+              <p>
+                If you experience persistent toothache, bleeding gums, or
+                sensitivity, arrange a dental assessment. A dentist can
+                identify the underlying cause and recommend suitable
+                treatment. Regular visits to a dental clinic in Abu Dhabi
+                can also help you maintain consistent oral health care.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
             TEAM
             ===================================================== */}
 
@@ -400,7 +563,10 @@ function Home() {
               >
                 <div className="doctor-photo">
                   <img
-                    src="/images/doctor.jpg"
+                    src="/images/doctor.webp"
+                    width="520"
+                    height="606"
+                    loading="lazy"
                     alt="Dr. Jyoti Raheja"
                   />
                 </div>
@@ -448,27 +614,30 @@ function Home() {
 
             <div className="gallery-grid">
               <div className="gallery-item large">
-                <img src="/images/clinic-gallery-1.jpg"alt="Sparkling Smile Dental Clinic gallery photo 1"className="gallery-image"/>
+                <img loading="lazy" src="/images/clinic-gallery-1.webp" width="1144" height="908" alt="Sparkling Smile Dental Clinic Abu Dhabi, clinic photo 1" className="gallery-image"/>
               </div>
 
               <div className="gallery-item">
-                <img src="/images/clinic-gallery-2.jpg"alt="Sparkling Smile Dental Clinic gallery photo 2"className="gallery-image"/>
+                <img loading="lazy" src="/images/clinic-gallery-2.webp" width="640" height="538" alt="Sparkling Smile Dental Clinic Abu Dhabi, clinic photo 2" className="gallery-image"/>
               </div>
 
               <div className="gallery-item">
-                <img src="/images/clinic-gallery-3.jpg"alt="Sparkling Smile Dental Clinic gallery photo 3"className="gallery-image"/>
+                <img loading="lazy" src="/images/clinic-gallery-3.webp" width="640" height="538" alt="Sparkling Smile Dental Clinic Abu Dhabi, clinic photo 3" className="gallery-image"/>
               </div>
 
               <div className="gallery-item">
-                <img src="/images/clinic-gallery-4.jpg"alt="Sparkling Smile Dental Clinic gallery photo 4"className="gallery-image"/>
+                <img loading="lazy" src="/images/clinic-gallery-4.webp" width="640" height="538" alt="Sparkling Smile Dental Clinic Abu Dhabi, clinic photo 4" className="gallery-image"/>
               </div>
 
               <div className="gallery-item">
-                 <img src="/images/clinic-gallery-5.jpg"alt="Sparkling Smile Dental Clinic gallery photo 5"className="gallery-image"/>
+                 <img loading="lazy" src="/images/clinic-gallery-5.webp" width="640" height="538" alt="Sparkling Smile Dental Clinic Abu Dhabi, clinic photo 5" className="gallery-image"/>
               </div>
               <div className="gallery-item">
                 <img
-                  src="/images/gallery-treatment-1.jpeg"
+                  src="/images/gallery-treatment-1.webp"
+                  width="650"
+                  height="273"
+                  loading="lazy"
                   alt="Dr. Jyoti Raheja providing dental treatment"
                   className="gallery-image"
                 />
@@ -476,7 +645,10 @@ function Home() {
 
               <div className="gallery-item">
                 <img
-                  src="/images/gallery-treatment-2.jpeg"
+                  src="/images/gallery-treatment-2.webp"
+                  width="640"
+                  height="537"
+                  loading="lazy"
                   alt="Dental treatment at Sparkling Smile Dental Clinic"
                   className="gallery-image"
                 />
@@ -484,7 +656,10 @@ function Home() {
 
               <div className="gallery-item">
                 <img
-                  src="/images/gallery-treatment-3.jpeg"
+                  src="/images/gallery-treatment-3.webp"
+                  width="640"
+                  height="537"
+                  loading="lazy"
                   alt="Dentist performing a dental procedure"
                   className="gallery-image"
                 />
@@ -510,10 +685,13 @@ function Home() {
               </h2>
 
               <p>
-                Book your consultation with Sparkling Smile Dental
-                Clinic. Choose a date and an available time.
-                Your dentist will evaluate your needs and recommend
-                the appropriate treatment during your consultation.
+                Whether you need a routine check-up, professional
+                cleaning, or treatment for an existing dental concern,
+                Sparkling Smile Dental Clinic is here to help. If you are
+                looking for the best dentist in Abu Dhabi for your dental
+                needs, book a consultation with our team. We will evaluate
+                your oral health and discuss suitable treatment options
+                based on your individual assessment.
               </p>
             </div>
 
@@ -554,8 +732,15 @@ function Home() {
               </h2>
 
               <p>
-                Contact {clinicName} for appointments,
-                treatment enquiries, or any other questions.
+                Have questions about our dental treatments or need
+                assistance with an appointment? Contact {clinicName} for
+                treatment enquiries and consultation details.
+              </p>
+
+              <p>
+                Our team can also help you with appointment-related
+                questions. We look forward to helping you take the next
+                step towards better oral health.
               </p>
 
               <div className="contact-details">
@@ -625,6 +810,22 @@ function Home() {
             </div>
           </div>
         </section>
+
+        {/* =====================================================
+            FAQ
+            ===================================================== */}
+
+        <section id="faq" className="section home-info-section faq-section">
+          <div className="container">
+            <div className="section-heading centered">
+              <p className="eyebrow">FREQUENTLY ASKED QUESTIONS</p>
+
+              <h2>Your questions, answered.</h2>
+            </div>
+
+            <FaqList faqs={HOME_FAQS} />
+          </div>
+        </section>
       </main>
 
       {/* =====================================================
@@ -648,9 +849,15 @@ function Home() {
 
             <Link to="/services">Services</Link>
 
-            <a href="#about">About</a>
+            <Link to="/about">About Us</Link>
 
-            <a href="#contact">Contact</a>
+            <Link to="/services/cosmetic-dentistry">Cosmetic Dentistry</Link>
+
+            <Link to="/services/pediatric-dentistry">Pediatric Dentist</Link>
+
+            <Link to="/contact">Emergency Dentist</Link>
+
+            <Link to="/contact">Contact</Link>
           </div>
         </div>
 

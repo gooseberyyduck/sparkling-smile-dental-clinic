@@ -3,6 +3,10 @@ import {
   Link,
   useParams,
 } from "react-router-dom";
+import Seo from "../components/Seo";
+import { CLINIC, absoluteUrl, toDescription } from "../seo/site";
+import { SERVICE_PAGES } from "../content/pages";
+import { ContentBlocks, FaqList, faqSchema } from "../components/ContentBlocks";
 
 type FAQ = {
   id: number;
@@ -77,7 +81,7 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
     benefits: 'Removing plaque and calculus supports gum health and makes daily cleaning easier. It can reduce sources of local irritation and remove some external staining. Professional cleaning also gives the dental team an opportunity to review oral hygiene and identify areas needing attention. It does not reverse established loss of supporting bone or replace treatment for active periodontal disease.',
     aftercare: 'Some patients experience temporary gum tenderness, slight bleeding, or sensitivity after cleaning, especially when deposits were extensive or gums were inflamed. Continue gentle brushing and interdental cleaning unless the dentist advises otherwise. Follow recommendations about home-care tools and the next maintenance visit. Contact the clinic if pain, bleeding, or swelling is severe or does not settle as expected.',
   },
-  "dental-polishing": {
+  "polishing": {
     overview: "Dental polishing is a procedure that smooths selected tooth surfaces and may remove some external stains after or alongside professional cleaning. It commonly uses a rotating cup or brush with a suitable polishing material, or another technique selected for the patient's needs. Polishing is not the same as whitening: it does not change the natural internal shade of teeth. It should be performed selectively because unnecessary or overly aggressive polishing can affect tooth surfaces and some restorative materials.",
     when_needed: 'Polishing may be considered when surface stains or deposits remain after assessment and cleaning, or as part of a preventive maintenance visit when appropriate. It may not be necessary at every cleaning appointment. The dental professional should consider enamel condition, exposed root surfaces, sensitivity, implants, crowns, veneers, and other restorations before choosing the method and material.',
     procedure_details: 'The dental professional examines the teeth and identifies the surfaces that may benefit from polishing. If suitable, a polishing cup, brush, air-polishing device, or other selected method is used with material appropriate to the tooth and restoration surfaces. The operator controls pressure and duration and avoids unnecessary treatment of areas where polishing is not indicated. The patient may receive advice about the source of staining and ways to reduce recurrence.',
@@ -276,7 +280,7 @@ const STATIC_SERVICES: Service[] = Object.entries(SERVICE_CONTENT).map(
       "teeth-whitening": "Teeth Whitening",
       "general-dentistry": "General Dentistry",
       "dental-cleaning": "Dental Cleaning",
-      "dental-polishing": "Dental Polishing",
+      "polishing": "Scaling and Polishing",
       "dental-filling": "Dental Filling",
       "fluoride-treatment": "Fluoride Treatment",
       "gum-disease-treatment": "Gum Disease Treatment",
@@ -332,7 +336,27 @@ function ServiceDetail() {
     slug: string;
   }>();
 
-  const service = STATIC_SERVICES.find((item) => item.slug === slug) || null;
+  const page = slug ? SERVICE_PAGES[slug] : undefined;
+  const service =
+    STATIC_SERVICES.find((item) => item.slug === slug) ||
+    (page && slug
+      ? {
+          id: 1000,
+          name: page.name,
+          slug,
+          category: page.category.replace(/\b\w+/g, (w) => w[0] + w.slice(1).toLowerCase()),
+          short_description: null,
+          overview: page.intro.join(" "),
+          when_needed: null,
+          procedure_details: null,
+          benefits: null,
+          aftercare: null,
+          duration_minutes: 30,
+          price: null,
+          image: null,
+          faqs: [],
+        }
+      : null);
   const loading = false;
   const error = service ? "" : "We couldn't find this service.";
 
@@ -360,6 +384,12 @@ function ServiceDetail() {
   if (error || !service) {
     return (
       <div className="page-message">
+        <Seo
+          title="Service not found | Sparkling Smile Dental Clinic"
+          description="This treatment page could not be found."
+          path="/services"
+          noindex
+        />
 
         <h2>
           Service not found
@@ -381,9 +411,55 @@ function ServiceDetail() {
   */
 
   const fallbackContent = getServiceContent(service);
+  const servicePath = `/services/${service.slug}`;
+  const seoTitle = page
+    ? page.metaTitle
+    : `${service.name} in Abu Dhabi | Sparkling Smile Dental Clinic`;
+  const seoDescription = page ? page.metaDescription : toDescription(
+    `${service.name} at Sparkling Smile Dental Clinic, Al Zahiyah, Abu Dhabi. ${service.overview || fallbackContent.overview}`
+  );
+  const serviceSchema: object[] = [
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalProcedure",
+      name: service.name,
+      description: toDescription(service.overview || fallbackContent.overview, 300),
+      url: absoluteUrl(servicePath),
+      procedureType: "https://schema.org/TherapeuticProcedure",
+      provider: { "@type": "Dentist", "@id": absoluteUrl("/#clinic"), name: CLINIC.name },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+        { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
+        { "@type": "ListItem", position: 3, name: service.name, item: absoluteUrl(servicePath) },
+      ],
+    },
+  ];
+  if (page && page.faqs.length > 0) {
+    serviceSchema.push(faqSchema(page.faqs));
+  } else if (service.faqs && service.faqs.length > 0) {
+    serviceSchema.push({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: service.faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: { "@type": "Answer", text: faq.answer },
+      })),
+    });
+  }
 
   return (
     <div className="site">
+      <Seo
+        title={seoTitle}
+        description={seoDescription}
+        path={servicePath}
+        schema={serviceSchema}
+      />
 
       {/* ======================================================
           NAVBAR
@@ -427,7 +503,7 @@ function ServiceDetail() {
               Services
             </Link>
 
-            <Link to="/#about">
+            <Link to="/about">
               About
             </Link>
 
@@ -439,7 +515,7 @@ function ServiceDetail() {
               Gallery
             </Link>
 
-            <Link to="/#contact">
+            <Link to="/contact">
               Contact
             </Link>
 
@@ -467,16 +543,22 @@ function ServiceDetail() {
 
 
           <p className="eyebrow">
-            {service.category.toUpperCase()}
+            {page ? page.category : service.category.toUpperCase()}
           </p>
 
 
           <h1>
-            {service.name}
+            {page ? page.title : `${service.name} in Abu Dhabi`}
           </h1>
 
 
-          {service.short_description && (
+          {page && page.intro.map((text, index) => (
+            <p key={index} className="service-hero-description">
+              {text}
+            </p>
+          ))}
+
+          {!page && service.short_description && (
             <p className="service-hero-description">
               {service.short_description}
             </p>
@@ -511,6 +593,38 @@ function ServiceDetail() {
         <div className="container service-detail-layout">
 
           <article className="service-detail-content">
+            {page ? (
+              <>
+                {page.sections.map((section) => (
+                  <section key={section.eyebrow} className="service-detail-section">
+                    <p className="eyebrow">{section.eyebrow}</p>
+                    <h2>{section.heading}</h2>
+                    <ContentBlocks blocks={section.blocks} />
+                    {section.eyebrow === "NEXT STEP" && (
+                      <div className="service-hero-actions">
+                        <a
+                          href="https://wa.me/971503002504"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="whatsapp-button"
+                        >
+                          Enquire on WhatsApp
+                        </a>
+                      </div>
+                    )}
+                  </section>
+                ))}
+
+                {page.faqs.length > 0 && (
+                  <section className="service-detail-section">
+                    <p className="eyebrow">FAQ</p>
+                    <h2>Frequently Asked Questions</h2>
+                    <FaqList faqs={page.faqs} />
+                  </section>
+                )}
+              </>
+            ) : (
+              <>
 
             {/* ==================================================
                 OVERVIEW
@@ -722,6 +836,8 @@ function ServiceDetail() {
 
             </section>
 
+              </>
+            )}
           </article>
 
 
@@ -790,11 +906,11 @@ function ServiceDetail() {
               Services
             </Link>
 
-            <Link to="/#about">
+            <Link to="/about">
               About
             </Link>
 
-            <Link to="/#contact">
+            <Link to="/contact">
               Contact
             </Link>
 
